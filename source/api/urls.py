@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import QuoteViewset
 
 router = DefaultRouter()
-router.register('quote', QuoteViewset)
+router.register('quote', QuoteViewset, basename='quote')
 
 
 app_name = 'api'
