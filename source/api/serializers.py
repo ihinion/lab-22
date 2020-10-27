@@ -1,8 +1,9 @@
-from rest_framework.serializers import ModelSerializer, CharField
+from rest_framework.serializers import ModelSerializer, CharField, DateTimeField
 from webapp.models import Quote
 
 
 class QuoteSerializer(ModelSerializer):
+    created_at = DateTimeField(format="%H:%M %d-%m-%Y", read_only=True)
     status_display = CharField(max_length=20, source='get_status_display',
                                read_only=True)
 

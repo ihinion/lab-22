@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Index{% endblock %}
+{% block navs %}
+    <li class="nav-item active ml-3">
+        <a class="nav-link" onclick="makeQuoteList()">Main <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item active ml-3">
+        <a class="nav-link" onclick="displayForm()">Add quote <span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+{% block content %}
+    <div id="result" style="font-weight: bold" class="my-3"></div>
+    <form id="form_block" style="display: none">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name_field">Name</label>
+            <input type="text" class="form-control" id="name_field">
+        </div>
+        <div class="form-group">
+            <label for="email_field">Email address</label>
+            <input type="email" class="form-control" id="email_field" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+            <label for="quote_text_field">Quote text</label>
+            <textarea class="form-control" id="quote_text_field" rows="3"></textarea>
+        </div>
+        {#<input class="btn btn-primary" type="submit" value="Submit"/>#}
+        <input class="btn btn-primary" type="button" value="Submit" id="btnsubmit" onclick="createQuote()">
+    </form>
+    <div id="quote_list"></div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/api_client.js' %}" type="application/javascript"></script>
+<script src="{% static 'js/quote_manager.js' %}" type="application/javascript"></script>
+{% endblock %}
