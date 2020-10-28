@@ -10,6 +10,7 @@
     </li>
 {% endblock %}
 {% block content %}
+    {% csrf_token %}
     <div id="result" style="font-weight: bold" class="my-3"></div>
     <form id="form_block" style="display: none">
         {% csrf_token %}
@@ -35,4 +36,5 @@
 {% block scripts %}
 <script src="{% static 'js/api_client.js' %}" type="application/javascript"></script>
 <script src="{% static 'js/quote_manager.js' %}" type="application/javascript"></script>
+    <script src="{% static 'js/likes.js' %}" type="application/javascript"></script>
 {% endblock %}

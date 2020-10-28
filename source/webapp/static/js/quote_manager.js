@@ -28,6 +28,7 @@ async function createQuote(event) {
     }
     form.reset();
     data = await response;
+    hideForm();
     console.log(data);
 }
 
@@ -74,8 +75,28 @@ function addQuoteCard(quote) {
     cardDiv.append(cardHeaderDiv);
 
     let cardHeaderDivRating = document.createElement('div');
-    cardHeaderDivRating.textContent = `Rating: ${quote['rating']}`
-    cardHeaderDiv.append(cardHeaderDivRating)
+    cardHeaderDivRating.textContent = `Rating: `
+    let counter = document.createElement('span')
+    counter.classList.add('counter')
+    counter.textContent = `${quote['rating']}`
+    cardHeaderDivRating.append(counter)
+    cardHeaderDivRating.append(document.createElement('br'))
+
+    let ratingLike = document.createElement('a');
+    let ratingDislike = document.createElement('a');
+    ratingDislike.textContent = '-'
+    ratingLike.textContent = '+'
+    ratingLike.classList.add('badge', 'badge-light');
+    ratingDislike.classList.add('badge', 'badge-light');
+    ratingLike.id = quote.id + 'like';
+    ratingDislike.id = quote.id + 'dislike';
+
+    ratingLike.onclick = onLike;
+    ratingDislike.onclick = onDislike;
+
+    cardHeaderDivRating.append(ratingDislike);
+    cardHeaderDivRating.append(ratingLike);
+    cardHeaderDiv.append(cardHeaderDivRating);
 
     let cardBodyDiv = document.createElement('div');
     cardBodyDiv.classList.add('card-body');
